@@ -14,15 +14,24 @@ module top_tb( );
 		encoder_b = 0;
 		#10ns;
 		a_reset = 1;
-		#1us;
-		$stop;
 	end
 	
-	always begin
-		encoder_a = 1; encoder_b = 0; #20ns;
+	initial begin
+		#20ns;
+		encoder_a = 1; #20ns;
 		encoder_b = 1; #20ns;
 		encoder_a = 0; #20ns;
 		encoder_b = 0; #20ns;
+		encoder_b = 1; #20ns;
+		encoder_a = 1; #20ns;
+		encoder_b = 0; #20ns;
+		encoder_a = 0; #20ns;
+		encoder_a = 1; encoder_b = 1;#20ns;
+		encoder_a = 0; encoder_b = 0; #20ns;
+		encoder_a = 0; encoder_b = 1; #20ns;
+		encoder_a = 1; encoder_b = 0; #20ns;
+		encoder_a = 0; encoder_b = 1; #20ns;
+		$stop;
 	end
 	
 	always begin

@@ -35,7 +35,7 @@ module top( input logic clock, a_reset, encoder_a, encoder_b, output logic [ 9 :
 					2'b00: begin dir = FORWARD; end
 					2'b01: begin dir = IDLE; end
 					2'b10: begin dir = ERROR; end
-					2'b11: begin dir = FORWARD; end
+					2'b11: begin dir = BACK; end
 				endcase
 			end
 			2'b10: begin 
