@@ -28,7 +28,7 @@ module top_tb( );
 	
 	initial begin
 		$readmemb( "../../src/test_vectors.tv", test_vectors );
-		$display( "Simulation started" );
+		$display( "Simulation started at %08t", $time );
 		vector_num = 0;
 		error_num = 0;
 		reset = 0; #50ns;
@@ -42,14 +42,14 @@ module top_tb( );
 	always @(negedge clock) begin
 		if ( reset ) begin
 			if ( y !== y_expected ) begin
-				$display( "Test %d failed: inputs %b, outputs y = %b, expected %b", vector_num, a, y, y_expected );
+				$display( "Test %1d failed: inputs %b, outputs y = %b, expected %b", vector_num, a, y, y_expected );
 				error_num++;
 			end
 			vector_num++;
 			if ( vector_num >= 2**WIDTH ) begin
-				$display( "%d tests completed with %d errors", vector_num, error_num );
+				$display( "%1d tests completed with %1d errors", vector_num, error_num );
 				#10ns;
-				$display( "Simulation stopped" );
+				$display( "Simulation stopped at %08t", $time );
 				$stop;
 			end
 		end
